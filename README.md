@@ -1,5 +1,8 @@
-# preview
+# introduce
 
+这是一个图片隐写术小工具，只实现了很简单的效果，可以将密文写入图片的色彩信息中，且肉眼很难察觉，并提供了密文提取工具。
+
+下面是一个预览演示图，可能加载比较慢，请耐心等待哦～
 ![预览](screenshots/7z1wxen16rawl2c4.gif)
 
 # Getting Started with Create Blocklet
