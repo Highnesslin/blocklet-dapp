@@ -1,5 +1,5 @@
 name: blocklet-dapp
-title: blocklet-dapp
+title: SecretImage
 description: A Blocklet DAPP blocklet
 keywords:
   - blocklet
@@ -28,6 +28,22 @@ interfaces:
     prefix: "*"
     port: BLOCKLET_PORT
     protocol: http
+navigation:
+  - title:
+      en: Steganography
+      zh: 图片隐写术
+    link: '/'
+    icon: mdi:home
+    section: header
+  - title:
+      en: EditUser
+      zh: 编辑信息
+    link: '/editUser'
+    icon: mdi:text-box
+    section: header
+capabilities:
+  component: true
+  navigation: true
 community: ""
 documentation: ""
 homepage: ""
@@ -45,6 +61,5 @@ scripts:
   preStart: node api/hooks/pre-start.js
   dev: npm run start
 environments: []
-capabilities: {}
 screenshots: []
 components: []

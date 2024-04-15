@@ -5,11 +5,12 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import dotenv from 'dotenv-flow';
-import express, { ErrorRequestHandler } from 'express';
+import express from 'express';
 import fallback from '@blocklet/sdk/lib/middlewares/fallback';
-
 import logger from './libs/logger';
 import routes from './routes';
+import responseMiddleware from './middleware/res';
+import errorMiddleware from './middleware/err';
 
 dotenv.config();
 
@@ -23,6 +24,7 @@ app.use(express.json({ limit: '1 mb' }));
 app.use(express.urlencoded({ extended: true, limit: '1 mb' }));
 app.use(cors());
 
+app.use(responseMiddleware);
 const router = express.Router();
 router.use('/api', routes);
 app.use(router);
@@ -33,12 +35,7 @@ if (isProduction) {
   const staticDir = path.resolve(process.env.BLOCKLET_APP_DIR!, 'dist');
   app.use(express.static(staticDir, { maxAge: '30d', index: false }));
   app.use(fallback('index.html', { root: staticDir }));
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  app.use(<ErrorRequestHandler>((err, _req, res, _next) => {
-    logger.error(err.stack);
-    res.status(500).send('Something broke!');
-  }));
+  app.use(errorMiddleware);
 }
 
 const port = parseInt(process.env.BLOCKLET_PORT!, 10);

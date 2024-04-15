@@ -5,6 +5,7 @@
 .pnp.js
 .DS_Store
 node_modules
+.blocklet-server
 
 # testing
 coverage

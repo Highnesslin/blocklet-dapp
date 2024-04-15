@@ -14,4 +14,7 @@ namespace Express {
       walletOS: string;
     };
   }
+  interface Response {
+    success: (res: any) => void;
+  }
 }

@@ -1,30 +1,47 @@
 import './app.css';
 
-import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-
-import About from './pages/about';
-import Home from './pages/home';
+import { BrowserRouter as Router } from 'react-router-dom';
+import Header from '@blocklet/ui-react/lib/Header';
+import Footer from '@blocklet/ui-react/lib/Footer';
+import { SessionProvider } from './libs/session';
+import { UserProvider } from './libs/user';
+import Layout from './pages/Layout';
 
 function App() {
   return (
-    <div className="app">
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
+    <div className="flex flex-col w-screen h-screen">
+      <Header
+        meta={{
+          navigation: [
+            {
+              icon: 'mdi:alpha-t-box',
+              link: '/',
+              section: 'header',
+              title: {
+                en: 'terminal',
+                zh: '终端',
+              },
+            },
+          ],
+        }}
+      />
+      <Layout />
+      <Footer />
     </div>
   );
 }
 
-export default function WrappedApp() {
+export default function () {
   // While the blocklet is deploy to a sub path, this will be work properly.
-  const basename = window?.blocklet?.prefix || '/';
+  const basename = !window.blocklet ? '/' : window.blocklet.prefix;
 
   return (
-    <Router basename={basename}>
-      <App />
-    </Router>
+    <SessionProvider>
+      <UserProvider>
+        <Router basename={basename}>
+          <App />
+        </Router>
+      </UserProvider>
+    </SessionProvider>
   );
 }

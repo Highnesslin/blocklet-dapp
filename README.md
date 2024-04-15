@@ -1,3 +1,7 @@
+# preview
+
+![预览](screenshots/7z1wxen16rawl2c4.gif)
+
 # Getting Started with Create Blocklet
 
 This project was bootstrapped with [Create Blocklet](https://github.com/blocklet/create-blocklet).
