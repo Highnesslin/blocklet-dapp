@@ -10,21 +10,7 @@ import Layout from './pages/Layout';
 function App() {
   return (
     <div className="flex flex-col w-screen h-screen">
-      <Header
-        meta={{
-          navigation: [
-            {
-              icon: 'mdi:alpha-t-box',
-              link: '/',
-              section: 'header',
-              title: {
-                en: 'terminal',
-                zh: '终端',
-              },
-            },
-          ],
-        }}
-      />
+      <Header />
       <Layout />
       <Footer />
     </div>
